@@ -4,96 +4,122 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Flying Bird App - Play Block Puzzle Online</title>
+<title>Flying Bird App - Play Puzzle Games Online</title>
 
-<meta name="description" content="Play Block Puzzle Free Butterfly online. Addictive brain puzzle game. Free to play on Flying Bird App.">
-<meta name="keywords" content="block puzzle game, butterfly puzzle, online puzzle game, brain game, free puzzle game">
+<meta name="description" content="Play Block Puzzle Free Butterfly online. Download our apps from Google Play Store.">
+<meta name="keywords" content="block puzzle game, butterfly puzzle, android puzzle game, play online">
 <meta name="author" content="Flying Bird App">
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 
 <style>
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
+
+body{
+background: linear-gradient(135deg,#0f2027,#203a43,#2c5364);
+color:white;
+text-align:center;
 }
 
-body {
-    background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
-    color: white;
-    text-align: center;
+/* HEADER */
+header{
+padding:70px 20px;
+background: linear-gradient(to right,#141e30,#243b55);
 }
 
-header {
-    padding: 60px 20px;
+header h1{
+font-size:42px;
+font-weight:700;
 }
 
-header h1 {
-    font-size: 42px;
-    font-weight: 700;
+header p{
+margin-top:10px;
+opacity:0.8;
 }
 
-header p {
-    margin-top: 10px;
-    font-size: 18px;
-    opacity: 0.8;
+/* GAME GRID */
+.games-section{
+padding:60px 20px;
+display:flex;
+justify-content:center;
+flex-wrap:wrap;
+gap:30px;
 }
 
-.game-section {
-    padding: 60px 20px;
+.game-card{
+background:#1e2a38;
+border-radius:18px;
+padding:20px;
+width:320px;
+box-shadow:0 10px 30px rgba(0,0,0,0.4);
+transition:0.4s ease;
 }
 
-.game-card {
-    background: #1e2a38;
-    border-radius: 20px;
-    padding: 30px;
-    max-width: 400px;
-    margin: auto;
-    box-shadow: 0 15px 40px rgba(0,0,0,0.4);
-    transition: 0.4s ease;
+.game-card:hover{
+transform:translateY(-8px) scale(1.03);
+box-shadow:0 20px 50px rgba(0,0,0,0.6);
 }
 
-.game-card:hover {
-    transform: translateY(-10px) scale(1.03);
-    box-shadow: 0 25px 60px rgba(0,0,0,0.6);
+.game-card img{
+width:100%;
+border-radius:12px;
+margin-bottom:15px;
 }
 
-.game-card img {
-    width: 100%;
-    border-radius: 15px;
-    margin-bottom: 20px;
+.game-card h2{
+font-size:20px;
+margin-bottom:8px;
 }
 
-.game-card h2 {
-    margin-bottom: 10px;
+.buttons{
+margin-top:15px;
+display:flex;
+justify-content:center;
+gap:10px;
+flex-wrap:wrap;
 }
 
-.play-btn {
-    display: inline-block;
-    margin-top: 15px;
-    padding: 12px 30px;
-    background: #00c6ff;
-    background: linear-gradient(to right, #0072ff, #00c6ff);
-    color: white;
-    text-decoration: none;
-    border-radius: 30px;
-    font-weight: 600;
-    transition: 0.3s ease;
+.play-btn{
+padding:10px 22px;
+background:linear-gradient(to right,#0072ff,#00c6ff);
+border-radius:25px;
+text-decoration:none;
+color:white;
+font-weight:600;
+transition:0.3s;
 }
 
-.play-btn:hover {
-    background: linear-gradient(to right, #00c6ff, #0072ff);
-    transform: scale(1.05);
+.play-btn:hover{
+transform:scale(1.05);
 }
 
-footer {
-    margin-top: 80px;
-    padding: 20px;
-    background: #111;
-    font-size: 14px;
-    opacity: 0.7;
+.playstore-btn{
+padding:10px 18px;
+background:#34a853;
+border-radius:25px;
+text-decoration:none;
+color:white;
+font-weight:600;
+transition:0.3s;
+}
+
+.playstore-btn:hover{
+transform:scale(1.05);
+}
+
+/* FOOTER */
+footer{
+margin-top:80px;
+background:#111;
+padding:30px 20px;
+font-size:14px;
+opacity:0.8;
+}
+
+.about-small{
+margin-bottom:15px;
+font-size:13px;
+opacity:0.7;
 }
 </style>
 </head>
@@ -101,21 +127,42 @@ footer {
 <body>
 
 <header>
-    <h1>Flying Bird App</h1>
-    <p>Play Fun & Addictive Puzzle Games Online</p>
+<h1>Flying Bird App</h1>
+<p>Play Fun & Addictive Puzzle Games Online</p>
 </header>
 
-<section class="game-section">
-    <div class="game-card">
-        <img src="game-preview.png" alt="Block Puzzle Game Preview">
-        <h2>Block Puzzle Free Butterfly</h2>
-        <p>Relaxing and addictive brain puzzle game. Play now and test your skills!</p>
-        <a href="block-puzzle.html" class="play-btn">🎮 Play Now</a>
-    </div>
+<section class="games-section">
+
+<!-- GAME CARD -->
+<div class="game-card">
+<img src="game-preview.png" alt="Block Puzzle Game">
+<h2>Block Puzzle Free Butterfly</h2>
+<p>Relaxing & addictive brain puzzle game.</p>
+
+<div class="buttons">
+<a href="block-puzzle.html" class="play-btn">🎮 Play Now</a>
+<a href="https://play.google.com/store/apps/details?id=YOUR_APP_ID" 
+   class="playstore-btn">📥 Google Play</a>
+</div>
+</div>
+
+<!-- Future Games Here -->
+
 </section>
 
 <footer>
-    © 2025 Flying Bird App | All Rights Reserved
+
+<div class="about-small">
+We develop high-quality Android puzzle games focused on performance and user experience.
+</div>
+
+<div>
+Email: flyingbirdplaystore@gmail.com
+</div>
+
+<br>
+© 2025 Flying Bird App | All Rights Reserved
+
 </footer>
 
 </body>
