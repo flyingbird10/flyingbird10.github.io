@@ -1,94 +1,122 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>FlyingBird</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-            text-align: center;
-        }
-        header {
-            background: #2c3e50;
-            color: white;
-            padding: 20px;
-        }
-        section {
-            padding: 40px 20px;
-        }
-        .btn {
-            display: inline-block;
-            padding: 10px 20px;
-            background: #3498db;
-            color: white;
-            text-decoration: none;
-            border-radius: 5px;
-        }
-        footer {
-            background: #222;
-            color: white;
-            padding: 15px;
-            font-size: 14px;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Flying Bird App - Play Block Puzzle Online</title>
+
+<meta name="description" content="Play Block Puzzle Free Butterfly online. Addictive brain puzzle game. Free to play on Flying Bird App.">
+<meta name="keywords" content="block puzzle game, butterfly puzzle, online puzzle game, brain game, free puzzle game">
+<meta name="author" content="Flying Bird App">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+    color: white;
+    text-align: center;
+}
+
+header {
+    padding: 60px 20px;
+}
+
+header h1 {
+    font-size: 42px;
+    font-weight: 700;
+}
+
+header p {
+    margin-top: 10px;
+    font-size: 18px;
+    opacity: 0.8;
+}
+
+.game-section {
+    padding: 60px 20px;
+}
+
+.game-card {
+    background: #1e2a38;
+    border-radius: 20px;
+    padding: 30px;
+    max-width: 400px;
+    margin: auto;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+    transition: 0.4s ease;
+}
+
+.game-card:hover {
+    transform: translateY(-10px) scale(1.03);
+    box-shadow: 0 25px 60px rgba(0,0,0,0.6);
+}
+
+.game-card img {
+    width: 100%;
+    border-radius: 15px;
+    margin-bottom: 20px;
+}
+
+.game-card h2 {
+    margin-bottom: 10px;
+}
+
+.play-btn {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 12px 30px;
+    background: #00c6ff;
+    background: linear-gradient(to right, #0072ff, #00c6ff);
+    color: white;
+    text-decoration: none;
+    border-radius: 30px;
+    font-weight: 600;
+    transition: 0.3s ease;
+}
+
+.play-btn:hover {
+    background: linear-gradient(to right, #00c6ff, #0072ff);
+    transform: scale(1.05);
+}
+
+footer {
+    margin-top: 80px;
+    padding: 20px;
+    background: #111;
+    font-size: 14px;
+    opacity: 0.7;
+}
+</style>
 </head>
+
 <body>
 
 <header>
-    <h1>FlyingBird</h1>
-    <p>Simple & Smart Mobile Applications</p>
+    <h1>Flying Bird App</h1>
+    <p>Play Fun & Addictive Puzzle Games Online</p>
 </header>
 
-<section>
-    <h2>About Us</h2>
-    <p>We develop high-quality Android applications focused on user experience and performance.</p>
-</section>
-
-<section>
-    <h2>Our Apps</h2>
-    <p>Check out our apps on Google Play Store.</p>
-    <a class="btn" href="#">View Apps</a>
-</section>
-
-    <section>
-    <h2>Play Block Puzzle</h2>
-    <p>Play Block Puzzle Free Butterfly Online</p>
-
-    <a href="block puzzle Free butterfly.html">
-        <img src="game-preview.png" 
-     width="50" 
-     style="border-radius:15px; 
-            box-shadow:0 6px 20px rgba(0,0,0,0.4);
-            transition:0.3s;">
-    </a>
-
-    <br><br>
-
-    <a class="btn" href="block puzzle Free butterfly.html">Play Now</a>
-</section>
-
-<section>
-    <h2>Contact</h2>
-    <p>Email: flyingbirdplaystore@gmail.com</p>
+<section class="game-section">
+    <div class="game-card">
+        <img src="game-preview.png" alt="Block Puzzle Game Preview">
+        <h2>Block Puzzle Free Butterfly</h2>
+        <p>Relaxing and addictive brain puzzle game. Play now and test your skills!</p>
+        <a href="block-puzzle.html" class="play-btn">🎮 Play Now</a>
+    </div>
 </section>
 
 <footer>
-    © 2026 FlyingBird | All Rights Reserved
+    © 2025 Flying Bird App | All Rights Reserved
 </footer>
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
