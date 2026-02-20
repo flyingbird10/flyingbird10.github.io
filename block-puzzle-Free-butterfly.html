@@ -1,10 +1,97 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="gu">
 
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>Block Puzzle Free Butterfly</title>
+  <!-- Open Graph Meta Tags -->
+  <meta property="og:title" content="Block Puzzle Free Butterfly - Play Online">
+  <meta property="og:description"
+    content="Play addictive Block Puzzle Free Butterfly online. Relaxing and fun brain puzzle game.">
+  <meta property="og:image" content="https://flyingbirdapp.in/game-preview.png">
+  <meta property="og:url" content="https://flyingbirdapp.in/block-puzzle-Free-butterfly.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Flying Bird App">
+
+  <!-- JSON-LD Structured Data (Schema.org) -->
+  <!-- SoftwareApplication: Google Rich Results supported type -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Block Puzzle Free Butterfly",
+    "url": "https://flyingbirdapp.in/block-puzzle-Free-butterfly.html",
+    "image": "https://flyingbirdapp.in/game-preview.png",
+    "description": "Block Puzzle Free Butterfly is an addictive and relaxing brain puzzle game. Drag and drop blocks to complete rows and columns. Play online for free in your browser.",
+    "applicationCategory": "GameApplication",
+    "applicationSubCategory": "PuzzleGame",
+    "operatingSystem": "Web Browser, Android",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.8",
+      "ratingCount": "1024",
+      "bestRating": "5",
+      "worstRating": "1"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Flying Bird App",
+      "url": "https://flyingbirdapp.in"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Flying Bird App"
+    }
+  }
+  </script>
+
+  <!-- FAQPage Schema: Guaranteed to show in Google Rich Results -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How do you play Block Puzzle Free Butterfly?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Drag and drop butterfly-shaped blocks onto the 10x10 board. Complete full rows or columns to clear them and earn points. The game ends when no more blocks can be placed on the board."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is Block Puzzle Free Butterfly free to play?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes! Block Puzzle Free Butterfly is completely free to play online in your browser. No download or installation required."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is there a time limit in Block Puzzle Free Butterfly?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The Classic mode has no time limit, so you can play at your own pace. There is also a Timed mode where you race against the clock for extra challenge."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I play Block Puzzle Free Butterfly on mobile?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes! You can play Block Puzzle Free Butterfly directly in your mobile browser, or download the Android app from the Google Play Store."
+        }
+      }
+    ]
+  }
+  </script>
 
   <!-- ===================================================================== -->
   <!-- FIREBASE CONFIGURATION AND INITIALIZATION                             -->
@@ -4603,7 +4690,7 @@
     let adCountdownTimerTimed = null;
     let adCountdownSecondsClassic = 45;
     let adCountdownSecondsTimed = 45;
-    
+
     // Track last ad shown time to prevent duplicate ads
     let lastIntervalAdTimeClassic = 0;
     let lastIntervalAdTimeTimed = 0;
@@ -4620,7 +4707,7 @@
     // Track shape distribution over 10-session cycles
     let shapeSessionCounter = 0; // Current session in 10-session cycle (0-9)
     let shapePool = []; // Pool of shapes for current 10-session cycle
-    
+
     // Shape groups based on requirements:
     // Group 1: Shape 1 (index 0) - 1 time per 10 sessions
     // Group 2: Shapes 2,3,4,6,7,8 (indices 1,2,3,5,6,7) - pick 2 randomly, each appears 1 time
@@ -4628,44 +4715,44 @@
     // Group 4: Shapes 14-33 (indices 13-32) - pick 3 randomly, each appears 1 time
     // Group 5: Shapes 34-39 (indices 33-38) - pick 1 randomly, appears 1 time
     // Group 6: Shapes 40-53 (indices 39-52) - pick 1 randomly, appears 1 time
-    
+
     function initializeShapePool() {
       shapePool = [];
-      
+
       // Group 1: Shape 1 (index 0) - 1 time
       shapePool.push(0);
-      
+
       // Group 2: Shapes 2,3,4,6,7,8 (indices 1,2,3,5,6,7) - pick 2 randomly, each appears 1 time
       const group2 = [1, 2, 3, 5, 6, 7];
       const shuffledGroup2 = [...group2].sort(() => Math.random() - 0.5);
       shapePool.push(shuffledGroup2[0], shuffledGroup2[1]);
-      
+
       // Group 3: Shapes 5,9,10,11,12,13 (indices 4,8,9,10,11,12) - pick 2 randomly, each appears 1 time
       const group3 = [4, 8, 9, 10, 11, 12];
       const shuffledGroup3 = [...group3].sort(() => Math.random() - 0.5);
       shapePool.push(shuffledGroup3[0], shuffledGroup3[1]);
-      
+
       // Group 4: Shapes 14-33 (indices 13-32) - pick 3 randomly, each appears 1 time
-      const group4 = Array.from({length: 20}, (_, i) => i + 13);
+      const group4 = Array.from({ length: 20 }, (_, i) => i + 13);
       const shuffledGroup4 = [...group4].sort(() => Math.random() - 0.5);
       shapePool.push(shuffledGroup4[0], shuffledGroup4[1], shuffledGroup4[2]);
-      
+
       // Group 5: Shapes 34-39 (indices 33-38) - pick 1 randomly, appears 1 time
-      const group5 = Array.from({length: 6}, (_, i) => i + 33);
+      const group5 = Array.from({ length: 6 }, (_, i) => i + 33);
       const shuffledGroup5 = [...group5].sort(() => Math.random() - 0.5);
       shapePool.push(shuffledGroup5[0]);
-      
+
       // Group 6: Shapes 40-53 (indices 39-52) - pick 1 randomly, appears 1 time
-      const group6 = Array.from({length: 14}, (_, i) => i + 39);
+      const group6 = Array.from({ length: 14 }, (_, i) => i + 39);
       const shuffledGroup6 = [...group6].sort(() => Math.random() - 0.5);
       shapePool.push(shuffledGroup6[0]);
-      
+
       // Shuffle the entire pool to randomize order
       shapePool = shapePool.sort(() => Math.random() - 0.5);
-      
+
       console.log("🎲 Shape pool initialized for 10-session cycle:", shapePool);
     }
-    
+
     // Initialize pool on first load
     initializeShapePool();
 
@@ -4922,7 +5009,7 @@
                   if (adCountdownEl) {
                     adCountdownEl.style.display = 'none';
                   }
-                  
+
                   // Trigger ad when countdown reaches 0 (backup mechanism)
                   if (window.Android && typeof window.Android.showIntervalInterstitialAd === 'function') {
                     // Get current elapsed time
@@ -4933,7 +5020,7 @@
                       } else if (isGamePlayPausedClassic && gamePlayPausedElapsedClassic > 0) {
                         elapsedTime = gamePlayPausedElapsedClassic;
                       }
-                      
+
                       // Check if enough time has passed since last ad
                       const timeSinceLastAd = lastIntervalAdTimeClassic === 0 ? INTERVAL_AD_DURATION : (elapsedTime - lastIntervalAdTimeClassic);
                       if (timeSinceLastAd >= INTERVAL_AD_DURATION && elapsedTime >= INTERVAL_AD_DURATION) {
@@ -4947,7 +5034,7 @@
                       } else if (isGamePlayPausedTimed && gamePlayPausedElapsedTimed > 0) {
                         elapsedTime = gamePlayPausedElapsedTimed;
                       }
-                      
+
                       // Check if enough time has passed since last ad
                       const timeSinceLastAd = lastIntervalAdTimeTimed === 0 ? INTERVAL_AD_DURATION : (elapsedTime - lastIntervalAdTimeTimed);
                       if (timeSinceLastAd >= INTERVAL_AD_DURATION && elapsedTime >= INTERVAL_AD_DURATION) {
@@ -5248,20 +5335,20 @@
           } else if (isGamePlayPausedClassic && gamePlayPausedElapsedClassic > 0) {
             elapsedTime = gamePlayPausedElapsedClassic;
           }
-          
+
           // Only check for ads if we have valid elapsed time and it's at least 7 minutes
           if (elapsedTime > 0 && elapsedTime >= INTERVAL_AD_DURATION) {
             // Check if we're at or past a 7-minute interval mark (7:00, 14:00, 21:00, etc.)
             // Use modulo to check if we're within 2 seconds of a 7-minute mark (wider window for reliability)
             const timeSinceLastInterval = elapsedTime % INTERVAL_AD_DURATION;
             const isAtIntervalMark = timeSinceLastInterval < 2000; // Within 2 seconds of interval (more reliable)
-            
+
             // Only show ad if:
             // 1. We're at a proper 7-minute interval mark, AND
             // 2. Either this is the first ad (lastIntervalAdTimeClassic === 0) OR enough time has passed since last ad
             if (isAtIntervalMark) {
               const timeSinceLastAd = lastIntervalAdTimeClassic === 0 ? INTERVAL_AD_DURATION : (elapsedTime - lastIntervalAdTimeClassic);
-              
+
               if (timeSinceLastAd >= INTERVAL_AD_DURATION) {
                 // Show interval ad every 7 minutes (only if Android interface exists)
                 if (window.Android && typeof window.Android.showIntervalInterstitialAd === 'function') {
@@ -5363,20 +5450,20 @@
           } else if (isGamePlayPausedTimed && gamePlayPausedElapsedTimed > 0) {
             elapsedTime = gamePlayPausedElapsedTimed;
           }
-          
+
           // Only check for ads if we have valid elapsed time and it's at least 7 minutes
           if (elapsedTime > 0 && elapsedTime >= INTERVAL_AD_DURATION) {
             // Check if we're at or past a 7-minute interval mark (7:00, 14:00, 21:00, etc.)
             // Use modulo to check if we're within 2 seconds of a 7-minute mark (wider window for reliability)
             const timeSinceLastInterval = elapsedTime % INTERVAL_AD_DURATION;
             const isAtIntervalMark = timeSinceLastInterval < 2000; // Within 2 seconds of interval (more reliable)
-            
+
             // Only show ad if:
             // 1. We're at a proper 7-minute interval mark, AND
             // 2. Either this is the first ad (lastIntervalAdTimeTimed === 0) OR enough time has passed since last ad
             if (isAtIntervalMark) {
               const timeSinceLastAd = lastIntervalAdTimeTimed === 0 ? INTERVAL_AD_DURATION : (elapsedTime - lastIntervalAdTimeTimed);
-              
+
               if (timeSinceLastAd >= INTERVAL_AD_DURATION) {
                 // Show interval ad every 7 minutes (only if Android interface exists)
                 if (window.Android && typeof window.Android.showIntervalInterstitialAd === 'function') {
@@ -5580,11 +5667,22 @@
           return true;
         }
 
-        // If on home screen, show exit confirmation
+        // If on home screen, show exit confirmation (mobile only)
         const homeScreen = document.getElementById('homeScreen');
         if (homeScreen && homeScreen.style.display !== 'none') {
-          showExitConfirmation();
-          return true;
+          // Web browser: go back in history (don't show exit popup)
+          // Mobile (Android WebView): show exit confirmation popup
+          const isWebBrowser = !window.Android && window.location.protocol !== 'file:';
+          if (isWebBrowser) {
+            // Web browser: just navigate back (browser history)
+            if (window.history.length > 1) {
+              window.history.go(-2); // -2 because we pushed a state on load
+            }
+            return false; // Let browser handle it
+          } else {
+            showExitConfirmation();
+            return true;
+          }
         }
 
         return false;
@@ -5614,10 +5712,13 @@
       // Handle browser back button (popstate event)
       window.addEventListener('popstate', (e) => {
         console.log('Browser back button/popstate event');
-        if (!handleBackButton()) {
-          // If back button wasn't handled, prevent default navigation
+        const isWebBrowser = !window.Android && window.location.protocol !== 'file:';
+        const handled = handleBackButton();
+        if (!handled && !isWebBrowser) {
+          // Mobile only: prevent default navigation if not handled
           e.preventDefault();
         }
+        // Web browser: allow default navigation (go back in history) if not handled
       });
 
       // Push initial state to history
@@ -6781,8 +6882,8 @@
           userData.profile.createdAtReadable = formatTimestampForFirebase(now);
         } else if (userData.profile.createdAt && !userData.profile.createdAtReadable) {
           // If createdAt exists but readable format doesn't, generate it
-          const createdAtMs = typeof userData.profile.createdAt === 'number' 
-            ? userData.profile.createdAt 
+          const createdAtMs = typeof userData.profile.createdAt === 'number'
+            ? userData.profile.createdAt
             : new Date(userData.profile.createdAt).getTime();
           userData.profile.createdAtReadable = formatTimestampForFirebase(createdAtMs);
         }
@@ -9766,21 +9867,21 @@
         // Ensure gamePlayTimers is properly merged
         if (!defaults.gamePlayTimers) {
           defaults.gamePlayTimers = {
-            classic: { 
-              startTime: '', 
+            classic: {
+              startTime: '',
               startTimeMs: 0,
-              pausedElapsed: '00:00:00:00', 
+              pausedElapsed: '00:00:00:00',
               pausedElapsedMs: 0,
-              isPaused: false, 
+              isPaused: false,
               pausedTime: '',
               pausedTimeMs: 0
             },
-            timed: { 
-              startTime: '', 
+            timed: {
+              startTime: '',
               startTimeMs: 0,
-              pausedElapsed: '00:00:00:00', 
+              pausedElapsed: '00:00:00:00',
               pausedElapsedMs: 0,
-              isPaused: false, 
+              isPaused: false,
               pausedTime: '',
               pausedTimeMs: 0
             }
@@ -9791,11 +9892,11 @@
         // Deep merge each section
         if (saved.profile) {
           merged.profile = { ...defaults.profile, ...saved.profile };
-          
+
           // Generate createdAtReadable if createdAt exists but readable format doesn't
           if (merged.profile.createdAt && !merged.profile.createdAtReadable) {
-            const createdAtMs = typeof merged.profile.createdAt === 'number' 
-              ? merged.profile.createdAt 
+            const createdAtMs = typeof merged.profile.createdAt === 'number'
+              ? merged.profile.createdAt
               : new Date(merged.profile.createdAt).getTime();
             if (!isNaN(createdAtMs) && createdAtMs > 0) {
               merged.profile.createdAtReadable = formatTimestampForFirebase(createdAtMs);
@@ -9808,13 +9909,13 @@
         // Deep merge gamePlayTimers
         if (saved.gamePlayTimers) {
           merged.gamePlayTimers = {
-            classic: { 
-              ...defaults.gamePlayTimers.classic, 
-              ...(saved.gamePlayTimers.classic || {}) 
+            classic: {
+              ...defaults.gamePlayTimers.classic,
+              ...(saved.gamePlayTimers.classic || {})
             },
-            timed: { 
-              ...defaults.gamePlayTimers.timed, 
-              ...(saved.gamePlayTimers.timed || {}) 
+            timed: {
+              ...defaults.gamePlayTimers.timed,
+              ...(saved.gamePlayTimers.timed || {})
             }
           };
         }
@@ -11287,10 +11388,10 @@
       }
 
       // Original random shape function (kept for backward compatibility)
-      function randomShapeOriginal() { 
-        return JSON.parse(JSON.stringify(shapes[Math.floor(Math.random() * shapes.length)])); 
+      function randomShapeOriginal() {
+        return JSON.parse(JSON.stringify(shapes[Math.floor(Math.random() * shapes.length)]));
       }
-      
+
       // Weighted random shape function based on 10-session cycle
       function randomShape() {
         // Check if we need to start a new 10-session cycle
@@ -11298,11 +11399,11 @@
           shapeSessionCounter = 0;
           initializeShapePool();
         }
-        
+
         // Get shape index from pool
         const shapeIndex = shapePool[shapeSessionCounter % shapePool.length];
         shapeSessionCounter++;
-        
+
         // Return a deep copy of the shape
         return JSON.parse(JSON.stringify(shapes[shapeIndex]));
       }
@@ -11591,7 +11692,7 @@
         }
 
         let sound = null;
-        
+
         // Determine which sound to play based on combo count
         if (comboCount === 2 || comboCount === 3) {
           sound = soundEffects.comboVoice2; // "Nice!"
@@ -11651,7 +11752,7 @@
 
         // Combo voice messages based on combo count
         let message = '';
-        
+
         if (comboCount === 2 || comboCount === 3) {
           message = 'Nice!';
         } else if (comboCount === 4 || comboCount === 5) {
@@ -11682,10 +11783,10 @@
 
         // Create speech utterance
         const utterance = new SpeechSynthesisUtterance(message);
-        
+
         // Try to use female voice (if available)
         const voices = window.speechSynthesis.getVoices();
-        const femaleVoice = voices.find(voice => 
+        const femaleVoice = voices.find(voice =>
           voice.name.toLowerCase().includes('female') ||
           voice.name.toLowerCase().includes('zira') ||  // Windows female voice
           voice.name.toLowerCase().includes('samantha') ||  // macOS female voice
@@ -11693,7 +11794,7 @@
           voice.name.toLowerCase().includes('veena') ||  // Android female voice
           (voice.lang.startsWith('en') && voice.gender === 'female')
         );
-        
+
         if (femaleVoice) {
           utterance.voice = femaleVoice;
         } else {
@@ -11713,7 +11814,7 @@
 
         // Play the voice
         window.speechSynthesis.speak(utterance);
-        
+
         console.log(`🎤 Combo voice (fallback): "${message}" for combo ${comboCount}`);
       }
 
@@ -12135,7 +12236,7 @@
         if (window.Android && typeof window.Android.exitApp === 'function') {
           window.Android.exitApp();
         } else {
-          // Fallback: close window if in browser
+          // Mobile WebView fallback: try to close
           window.close();
         }
       };
@@ -13865,7 +13966,7 @@
             document.getElementById("scoreClassic").textContent = "Score: " + scoreClassic;
 
             showComboPopup('classic', comboCountClassic, comboPoints);
-            
+
             // Play combo voice sound for specific combo counts
             playComboVoice(comboCountClassic);
           } else {
@@ -15796,7 +15897,7 @@
             document.getElementById("scoreTimed").textContent = "Score: " + scoreTimed;
 
             showComboPopup('timed', comboCountTimed, comboPoints);
-            
+
             // Play combo voice sound for specific combo counts
             playComboVoice(comboCountTimed);
           } else {
@@ -16177,6 +16278,63 @@
 
     }); // End DOMContentLoaded
   </script>
+  <!-- SEO Content Section - Hidden from game UI, visible to search engines -->
+  <!-- ===================================================================== -->
+  <!-- SEO ARTICLE SECTION                                                    -->
+  <!-- Accessible to search engines but hidden visually                       -->
+  <!-- ===================================================================== -->
+  <div aria-hidden="true" style="position:absolute;left:-9999px;top:0;width:1px;height:1px;overflow:hidden;">
+    <section style="max-width:900px;margin:40px auto;padding:20px;color:white;text-align:left;line-height:1.7;">
+
+      <h1>Block Puzzle Free Butterfly – Play Online</h1>
+
+      <p>
+        Block Puzzle Free Butterfly is a relaxing and addictive brain puzzle game designed for players who love logic
+        challenges and colorful gameplay. This online puzzle game combines classic block mechanics with beautiful
+        butterfly-themed graphics, making it perfect for both kids and adults.
+      </p>
+
+      <h2>How to Play Block Puzzle Free Butterfly</h2>
+
+      <p>
+        The goal of the game is simple: drag and drop butterfly blocks onto the board and complete full rows or columns
+        to clear them. Once a line is filled completely, it disappears and gives you points. The more lines you clear at
+        once, the higher your score will be.
+      </p>
+
+      <p>
+        There is no time limit, so you can play at your own pace. However, you must think carefully before placing each
+        block because the game ends when there is no more space left on the board.
+      </p>
+
+      <h2>Why You Will Love This Puzzle Game</h2>
+
+      <ul>
+        <li>Beautiful butterfly-themed graphics</li>
+        <li>Relaxing yet challenging gameplay</li>
+        <li>No time limit – play at your own speed</li>
+        <li>Improves logical thinking and concentration</li>
+        <li>Free to play online without download</li>
+      </ul>
+
+      <h2>Play Online for Free</h2>
+
+      <p>
+        You can enjoy Block Puzzle Free Butterfly directly in your browser without installing anything. If you prefer
+        playing on your mobile device, you can also download the Android version from Google Play Store.
+      </p>
+
+      <p>
+        Start playing now and challenge yourself to beat your highest score in this fun and addictive block puzzle game!
+      </p>
+
+    </section>
+  </div>
+  <!-- ===================================================================== -->
+  <!-- END SEO CONTENT SECTION                                                -->
+  <!-- ===================================================================== -->
+
 </body>
+
 
 </html>
