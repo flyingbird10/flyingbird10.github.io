@@ -2,6 +2,14 @@
 <html lang="gu">
 
 <head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-SHQ1VR77Q3"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-SHQ1VR77Q3');
+  </script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>Block Puzzle Free Butterfly</title>
@@ -100,7 +108,9 @@
   <!-- ===================================================================== -->
   <!-- Firebase v9 Modular SDK -->
   <script type="module">
-    // Firebase Configuration - Updated with working config
+    // Firebase client config (client API key is meant to be in frontend; secure it via
+    // Google Cloud Console: Credentials → API key → Application restriction = HTTP referrers
+    // with your domain only, and API restriction = only needed Firebase APIs)
     const firebaseConfig = {
       apiKey: "AIzaSyCMEaVYtuR4X_QIBjG0mWaVT0LDfB9V3O0",
       authDomain: "block-puzzle-free-butterfly.firebaseapp.com",
@@ -922,7 +932,6 @@
       /* Optimize scrolling to prevent flashing - especially for Android 12 and below */
       -webkit-transform: translateZ(0);
       transform: translateZ(0);
-      -webkit-overflow-scrolling: touch;
       -webkit-backface-visibility: hidden;
       backface-visibility: hidden;
       /* Force hardware acceleration */
@@ -3792,7 +3801,7 @@
         width: auto;
         height: auto;
         min-width: auto;
-        min-height: auto;
+        min-height: 0;
         max-width: none;
         max-height: none;
       }
@@ -4137,10 +4146,35 @@
       margin-right: 10px;
       color: white;
     }
+
+    /* Linter: moved from inline styles to avoid "CSS inline styles" warnings */
+    .adsense-container { max-width: 1200px; margin: 10px auto; min-height: 90px; text-align: center; }
+    .adsense-container-bottom { max-width: 1200px; margin: 15px auto; min-height: 90px; text-align: center; }
+    .auth-modal-hint { font-size: 0.85rem; color: #1efeff; margin-top: 15px; }
+    .auth-modal-p { text-align: center; margin-bottom: 20px; color: #9ca3af; }
+    .auth-back-btn { margin-top: 10px; background-color: #80ecf2; color: #000000; }
+    .auth-submit-full { width: 100%; margin-top: 10px; }
+    .auth-back-full { margin-top: 10px; width: 100%; }
+    .country-picker-trigger-block { display: block; }
+    .user-stats-btn-hidden { display: none; }
+    #exitConfirmPopup.exit-confirm-popup { display: none; z-index: 20000; }
+    .exit-confirm-actions { display: flex; gap: 20px; justify-content: center; margin-top: 20px; flex-wrap: wrap; }
+    .exit-confirm-yes { background: #ef4444; min-width: 120px; margin: 5px; }
+    .exit-confirm-no { background: #10b981; min-width: 120px; margin: 5px; }
+    .display-none { display: none; }
+    .seo-content-wrapper { position: absolute; left: -9999px; top: 0; width: 1px; height: 1px; overflow: hidden; }
+    .seo-content-inner { max-width: 900px; margin: 40px auto; padding: 20px; color: white; text-align: left; line-height: 1.7; }
   </style>
+  <!-- Google AdSense (verification + ads) - flyingbirdapp.in -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4018304413571969" crossorigin="anonymous"></script>
 </head>
 
 <body>
+  <!-- AdSense: Top placement - Replace data-ad-slot with your ad unit slot ID -->
+  <div id="adsense-top" class="adsense-container"></div>
+  <script>
+    (function(){ var d=document.getElementById('adsense-top'); if(d){ var i=document.createElement('ins'); i.className='adsbygoogle'; i.style.display='block'; i.setAttribute('data-ad-client','ca-pub-4018304413571969'); i.setAttribute('data-ad-slot','0000000000'); i.setAttribute('data-ad-format','auto'); i.setAttribute('data-full-width-responsive','true'); d.appendChild(i); (window.adsbygoogle=window.adsbygoogle||[]).push({}); } })();
+  </script>
   <!-- Welcome Modal -->
   <div id="welcomeModal" class="auth-modal user-stats-hidden">
     <div class="auth-modal-content">
@@ -4150,7 +4184,7 @@
         <button id="welcomeGuestBtn" class="outline">🎮 Play as Guest</button>
         <button id="welcomeEmailBtn" class="primary">📧 Play with Email</button>
       </div>
-      <p style="font-size: 0.85rem; color: #1efeff; margin-top: 15px;">
+      <p class="auth-modal-hint">
         💡 Email login: Recover data if you lose it
       </p>
     </div>
@@ -4160,15 +4194,14 @@
   <div id="guestAuthModal" class="auth-modal user-stats-hidden">
     <div class="auth-modal-content">
       <h3 id="guestAuthTitle">🎮 Guest Account</h3>
-      <p style="text-align: center; margin-bottom: 20px; color: #9ca3af;">
+      <p class="auth-modal-p">
         Choose an option to continue as guest
       </p>
       <div class="welcome-actions">
         <button type="button" id="guestLoginBtn" class="primary">🔑 Login</button>
         <button type="button" id="guestSignupBtn" class="outline">✨ Create Account</button>
       </div>
-      <button type="button" id="guestAuthBackBtn" class="outline"
-        style="margin-top: 10px; background-color: #80ecf2; color: #000000;">← Back</button>
+      <button type="button" id="guestAuthBackBtn" class="outline auth-back-btn">← Back</button>
     </div>
   </div>
 
@@ -4176,15 +4209,14 @@
   <div id="emailAuthModal" class="auth-modal user-stats-hidden">
     <div class="auth-modal-content">
       <h3 id="emailAuthTitle">📧 Email Account</h3>
-      <p style="text-align: center; margin-bottom: 20px; color: #9ca3af;">
+      <p class="auth-modal-p">
         Choose an option to continue with email
       </p>
       <div class="welcome-actions">
         <button type="button" id="emailLoginBtn" class="primary">🔑 Login</button>
         <button type="button" id="emailSignupBtn" class="outline">✨ Create Account</button>
       </div>
-      <button type="button" id="emailAuthBackBtn" class="outline"
-        style="margin-top: 10px; background-color: #80ecf2; color: #000000;">← Back</button>
+      <button type="button" id="emailAuthBackBtn" class="outline auth-back-btn">← Back</button>
     </div>
   </div>
 
@@ -4192,7 +4224,7 @@
   <div id="guestLoginModal" class="auth-modal user-stats-hidden">
     <div class="auth-modal-content">
       <h3>🔑 Guest Login</h3>
-      <p style="text-align: center; margin-bottom: 20px; color: #9ca3af;">
+      <p class="auth-modal-p">
         Enter your username and password
       </p>
       <form id="guestLoginForm">
@@ -4205,10 +4237,9 @@
           <input type="password" id="guestLoginPassword" placeholder="Enter password" required minlength="4" />
         </label>
         <div id="guestLoginError" class="auth-error user-stats-hidden"></div>
-        <button type="submit" id="guestLoginSubmitBtn" class="primary"
-          style="width: 100%; margin-top: 10px;">Login</button>
+        <button type="submit" id="guestLoginSubmitBtn" class="primary auth-submit-full">Login</button>
       </form>
-      <button type="button" id="guestLoginBackBtn" class="outline" style="margin-top: 10px; width: 100%;">←
+      <button type="button" id="guestLoginBackBtn" class="outline auth-back-full">←
         Back</button>
     </div>
   </div>
@@ -4217,7 +4248,7 @@
   <div id="guestSignupModal" class="auth-modal user-stats-hidden">
     <div class="auth-modal-content">
       <h3>✨ Create Guest Account</h3>
-      <p style="text-align: center; margin-bottom: 20px; color: #9ca3af;">
+      <p class="auth-modal-p">
         Create a new guest account to save your progress
       </p>
       <form id="guestSignupForm">
@@ -4237,14 +4268,14 @@
         </label>
         <label>
           Country
-          <span id="guestCountryPicker" class="country-picker-trigger" style="display: block;">Select country…</span>
+          <span id="guestCountryPicker" class="country-picker-trigger country-picker-trigger-block">Select country…</span>
           <select id="guestCountry" class="user-stats-hidden"></select>
         </label>
         <div id="guestSignupError" class="auth-error user-stats-hidden"></div>
-        <button type="submit" id="guestSignupSubmitBtn" class="primary" style="width: 100%; margin-top: 10px;">Create
+        <button type="submit" id="guestSignupSubmitBtn" class="primary auth-submit-full">Create
           Account</button>
       </form>
-      <button type="button" id="guestSignupBackBtn" class="outline" style="margin-top: 10px; width: 100%;">←
+      <button type="button" id="guestSignupBackBtn" class="outline auth-back-full">←
         Back</button>
     </div>
   </div>
@@ -4344,9 +4375,9 @@
       </div>
       <div class="account-actions">
         <button id="deleteAccountBtn" class="delete-account-btn user-stats-hidden" title="Delete Account"> 🗑️</button>
-        <button id="signInBtn" style="display: none;">🔑 Sign In</button>
-        <button id="loginBtn" style="display: none;">🔑 Login</button>
-        <button id="signOutBtn" style="display: none;">🚪 Sign Out</button>
+        <button id="signInBtn" class="user-stats-btn-hidden">🔑 Sign In</button>
+        <button id="loginBtn" class="user-stats-btn-hidden">🔑 Login</button>
+        <button id="signOutBtn" class="user-stats-btn-hidden">🚪 Sign Out</button>
       </div>
     </div>
 
@@ -4442,13 +4473,13 @@
   </div>
 
   <!-- Exit Confirmation Popup -->
-  <div id="exitConfirmPopup" class="banner user-stats-hidden" style="display: none; z-index: 20000;">
+  <div id="exitConfirmPopup" class="banner user-stats-hidden exit-confirm-popup">
     <h3>🚪 Exit Game?</h3>
     <p id="exitConfirmMessage">Are you sure you want to exit the game?</p>
-    <div style="display: flex; gap: 20px; justify-content: center; margin-top: 20px; flex-wrap: wrap;">
-      <button id="exitConfirmYes" class="modal-button" style="background: #ef4444; min-width: 120px; margin: 5px;">Yes,
+    <div class="exit-confirm-actions">
+      <button id="exitConfirmYes" class="modal-button exit-confirm-yes">Yes,
         Exit</button>
-      <button id="exitConfirmNo" class="modal-button" style="background: #10b981; min-width: 120px; margin: 5px;">No,
+      <button id="exitConfirmNo" class="modal-button exit-confirm-no">No,
         Stay</button>
     </div>
   </div>
@@ -4492,10 +4523,10 @@
     </div>
     <!-- Game Play Timer and Ad Countdown - Above Board -->
     <div class="game-timer-container">
-      <div id="intervalAdCountdownClassic" class="interval-ad-countdown" style="display: none;">
+      <div id="intervalAdCountdownClassic" class="interval-ad-countdown display-none">
         <span class="countdown-time" id="intervalAdCountdownTimeClassic">00:00</span>
       </div>
-      <div id="adCountdownClassic" class="ad-countdown-text" style="display: none;">
+      <div id="adCountdownClassic" class="ad-countdown-text display-none">
         <span class="ad-countdown-label" id="adCountdownLabelClassic">Ad will show in</span>
         <span class="ad-countdown-number" id="adCountdownNumberClassic">45</span>
         <span class="ad-countdown-unit">sec</span>
@@ -4519,7 +4550,7 @@
       <button id="restartPauseOverlayClassicBtn">🔄 Restart</button>
     </div>
     <!-- Pause Popup -->
-    <div id="pausePopupClassic" class="banner pause-popup" style="display:none;">
+    <div id="pausePopupClassic" class="banner pause-popup display-none">
       <h3>⏸️ Classic Paused</h3>
       <p>Game paused. You switched tabs or minimized the app. Press resume to continue your classic game.</p>
       <button id="pausePopupClassicResume">▶️ Resume</button>
@@ -4544,10 +4575,10 @@
     <p id="timerDisplay">Time: 300</p>
     <!-- Game Play Timer and Ad Countdown - Above Board -->
     <div class="game-timer-container">
-      <div id="intervalAdCountdownTimed" class="interval-ad-countdown" style="display: none;">
+      <div id="intervalAdCountdownTimed" class="interval-ad-countdown display-none">
         <span class="countdown-time" id="intervalAdCountdownTimeTimed">00:00</span>
       </div>
-      <div id="adCountdownTimed" class="ad-countdown-text" style="display: none;">
+      <div id="adCountdownTimed" class="ad-countdown-text display-none">
         <span class="ad-countdown-label" id="adCountdownLabelTimed">Ad will show in</span>
         <span class="ad-countdown-number" id="adCountdownNumberTimed">45</span>
         <span class="ad-countdown-unit">sec</span>
@@ -4571,7 +4602,7 @@
       <button id="restartPauseOverlayTimedBtn">🔄 Restart</button>
     </div>
     <!-- Pause Popup -->
-    <div id="pausePopupTimed" class="banner pause-popup" style="display:none;">
+    <div id="pausePopupTimed" class="banner pause-popup display-none">
       <h3>⏸️ Timed Paused</h3>
       <p>Game paused. You switched tabs or minimized the app. Press resume to continue your timed game.</p>
       <button id="pausePopupTimedResume">▶️ Resume</button>
@@ -4613,7 +4644,7 @@
         </label>
         <label id="countryGroup" class="user-stats-hidden">
           Country
-          <span id="authCountryPicker" class="country-picker-trigger" style="display: block;">Select country…</span>
+          <span id="authCountryPicker" class="country-picker-trigger country-picker-trigger-block">Select country…</span>
           <select id="authCountry" class="user-stats-hidden"></select>
         </label>
         <button type="submit" id="authSubmitBtn">Save Progress</button>
@@ -5667,22 +5698,20 @@
           return true;
         }
 
-        // If on home screen, show exit confirmation (mobile only)
+        // If on home screen: Android = show exit popup; Web = go back to site home
         const homeScreen = document.getElementById('homeScreen');
         if (homeScreen && homeScreen.style.display !== 'none') {
-          // Web browser: go back in history (don't show exit popup)
-          // Mobile (Android WebView): show exit confirmation popup
-          const isWebBrowser = !window.Android && window.location.protocol !== 'file:';
-          if (isWebBrowser) {
-            // Web browser: just navigate back (browser history)
-            if (window.history.length > 1) {
-              window.history.go(-2); // -2 because we pushed a state on load
-            }
-            return false; // Let browser handle it
-          } else {
+          // Show exit popup ONLY in Android WebView (window.Android). Never in web browser.
+          const isAndroidApp = !!(typeof window !== 'undefined' && window.Android);
+          if (isAndroidApp) {
             showExitConfirmation();
             return true;
           }
+          // Web browser (desktop/mobile browser): back button = go to website home (history)
+          if (window.history && window.history.length > 1) {
+            window.history.back();
+          }
+          return false;
         }
 
         return false;
@@ -5712,13 +5741,13 @@
       // Handle browser back button (popstate event)
       window.addEventListener('popstate', (e) => {
         console.log('Browser back button/popstate event');
-        const isWebBrowser = !window.Android && window.location.protocol !== 'file:';
+        const isAndroidApp = !!(typeof window !== 'undefined' && window.Android);
         const handled = handleBackButton();
-        if (!handled && !isWebBrowser) {
-          // Mobile only: prevent default navigation if not handled
+        if (!handled && isAndroidApp) {
+          // Android WebView only: prevent default navigation if not handled
           e.preventDefault();
         }
-        // Web browser: allow default navigation (go back in history) if not handled
+        // Web browser: allow default (back goes to previous page / site home)
       });
 
       // Push initial state to history
@@ -16283,8 +16312,8 @@
   <!-- SEO ARTICLE SECTION                                                    -->
   <!-- Accessible to search engines but hidden visually                       -->
   <!-- ===================================================================== -->
-  <div aria-hidden="true" style="position:absolute;left:-9999px;top:0;width:1px;height:1px;overflow:hidden;">
-    <section style="max-width:900px;margin:40px auto;padding:20px;color:white;text-align:left;line-height:1.7;">
+  <div aria-hidden="true" class="seo-content-wrapper">
+    <section class="seo-content-inner">
 
       <h1>Block Puzzle Free Butterfly – Play Online</h1>
 
@@ -16334,8 +16363,13 @@
   <!-- END SEO CONTENT SECTION                                                -->
   <!-- ===================================================================== -->
 
+  <!-- AdSense: Bottom placement - Replace data-ad-slot with your ad unit slot ID -->
+  <div id="adsense-bottom" class="adsense-container-bottom"></div>
+  <script>
+    (function(){ var d=document.getElementById('adsense-bottom'); if(d){ var i=document.createElement('ins'); i.className='adsbygoogle'; i.style.display='block'; i.setAttribute('data-ad-client','ca-pub-4018304413571969'); i.setAttribute('data-ad-slot','0000000000'); i.setAttribute('data-ad-format','auto'); i.setAttribute('data-full-width-responsive','true'); d.appendChild(i); (window.adsbygoogle=window.adsbygoogle||[]).push({}); } })();
+  </script>
+
 </body>
 
 
 </html>
-
