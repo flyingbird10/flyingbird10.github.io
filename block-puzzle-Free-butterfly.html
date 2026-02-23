@@ -5309,9 +5309,10 @@
           saveTimerStateToStorage('classic');
           console.log("✅ Classic timer started automatically (first time)");
         } else if (isGamePlayPausedClassic) {
-          // Timer was already started but is paused - resume it
-          resumeGamePlayTimer('classic');
-          lastActivityTimeClassic = Date.now(); // Update activity time on resume
+          // Timer was already started but is paused (e.g. user came from home) - do NOT resume
+          // Timer will only resume when user clicks Resume button
+          lastActivityTimeClassic = Date.now();
+          console.log("✅ Classic timer is paused - will run only when user clicks Resume");
         } else {
           // Timer is already running - just update display, don't reset
           console.log("✅ Classic timer already running - continuing from:", gamePlayStartTimeClassic);
@@ -5424,9 +5425,10 @@
           saveTimerStateToStorage('timed');
           console.log("✅ Timed timer started automatically (first time)");
         } else if (isGamePlayPausedTimed) {
-          // Timer was already started but is paused - resume it
-          resumeGamePlayTimer('timed');
-          lastActivityTimeTimed = Date.now(); // Update activity time on resume
+          // Timer was already started but is paused (e.g. user came from home) - do NOT resume
+          // Timer will only resume when user clicks Resume button
+          lastActivityTimeTimed = Date.now();
+          console.log("✅ Timed timer is paused - will run only when user clicks Resume");
         } else {
           // Timer is already running - just update display, don't reset
           console.log("✅ Timed timer already running - continuing from:", gamePlayStartTimeTimed);
