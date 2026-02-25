@@ -25,26 +25,101 @@
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
 
+html, body {
+  width: 100%;
+  min-width: 0;
+  overflow-x: hidden;
+}
+
 body{
-background: linear-gradient(135deg,#0f2027,#203a43,#2c5364);
+background: linear-gradient(135deg,#6091df,#43a0bf,#32cbc6);
 color:white;
 text-align:center;
 }
 
-/* HEADER */
+/* HEADER - animated sky + flying birds */
 header{
 padding:70px 20px;
-background: linear-gradient(to right,#141e30,#243b55);
+position:relative;
+overflow:hidden;
 }
-
+header::before{
+content:'';
+position:absolute;
+inset:0;
+background:
+  radial-gradient(ellipse 140% 70% at 50% -20%, rgba(255,255,255,0.35) 0%, transparent 45%),
+  radial-gradient(ellipse 100% 50% at 50% 110%, rgba(135,206,235,0.4) 0%, transparent 55%),
+  linear-gradient(260deg, #ec8ac5 0%, #b474d6 22%, #2ec4a1 45%, #60e5ab 70%, #9ee13f 100%);
+background-size: 100% 100%;
+animation:headerSky 10s ease-in-out infinite;
+z-index:0;
+}
+@keyframes headerSky{
+0%,100%{ opacity:1; filter:brightness(1); }
+50%{ opacity:0.98; filter:brightness(1.05); }
+}
+.header-birds{
+position:absolute;
+inset:0;
+z-index:1;
+pointer-events:none;
+}
+.header-birds .bird-img{
+position:absolute;
+display:block;
+width:78px;
+height:auto;
+opacity:0.9;
+animation:birdFly 18s linear infinite;
+}
+.header-birds .bird-img img{
+display:block;
+width:100%;
+height:auto;
+}
+/* Spread birds: different start positions (delay) and heights (top) so they stay far apart */
+.header-birds .bird-img:nth-child(1){ top:10%; animation-duration:28s; animation-delay:0s; width:40px; }
+.header-birds .bird-img:nth-child(2){ top:55%; animation-duration:26s; animation-delay:-11s; width:52px; }
+.header-birds .bird-img:nth-child(3){ top:78%; animation-duration:30s; animation-delay:-22s; width:36px; }
+.header-birds .bird-img:nth-child(4){ top:25%; animation-duration:24s; animation-delay:-6s; width:44px; }
+.header-birds .bird-img:nth-child(5){ top:65%; animation-duration:27s; animation-delay:-17s; width:40px; }
+.header-birds .bird-img:nth-child(6){ top:42%; animation-duration:29s; animation-delay:-3s; width:46px; }
+.header-birds .bird-img:nth-child(7){ top:18%; animation-duration:25s; animation-delay:-14s; width:42px; }
+.header-birds .bird-img:nth-child(8){ top:72%; animation-duration:23s; animation-delay:-8s; width:38px; }
+.header-birds .bird-img:nth-child(9){ top:35%; animation-duration:31s; animation-delay:-25s; width:44px; }
+.header-birds .bird-img:nth-child(10){ top:5%; animation-duration:22s; animation-delay:-2s; width:40px; }
+.header-birds .bird-img:nth-child(11){ top:48%; animation-duration:28s; animation-delay:-19s; width:36px; }
+.header-birds .bird-img:nth-child(12){ top:88%; animation-duration:26s; animation-delay:-13s; width:46px; }
+@keyframes birdFly{
+0%{ left:-10%; transform:translateY(0) scaleX(1); }
+25%{ transform:translateY(-8px) scaleX(1); }
+50%{ transform:translateY(4px) scaleX(1); }
+75%{ transform:translateY(-5px) scaleX(1); }
+100%{ left:110%; transform:translateY(0) scaleX(1); }
+}
+@keyframes birdFlyR2L{
+0%{ left:110%; transform:translateY(0); }
+25%{ transform:translateY(-8px); }
+50%{ transform:translateY(4px); }
+75%{ transform:translateY(-5px); }
+100%{ left:-10%; transform:translateY(0); }
+}
+.header-birds .bird-img.bird-r2l{ animation-name:birdFlyR2L; }
+header h1, header p{
+position:relative;
+z-index:2;
+color:#1034c4;
+text-shadow:0 1px 2px rgba(255,255,255,0.6);
+}
 header h1{
-font-size:42px;
+font-size:52px;
 font-weight:700;
 }
-
 header p{
 margin-top:10px;
-opacity:0.8;
+opacity:0.9;
+color:#e21fe6;
 }
 
 /* GAME GRID */
@@ -54,6 +129,7 @@ display:flex;
 justify-content:center;
 flex-wrap:wrap;
 gap:30px;
+background:#0c9694;
 }
 
 .game-card{
@@ -120,16 +196,18 @@ transform:scale(1.05);
 /* FOOTER */
 footer{
 margin-top:80px;
-background:#111;
+background:#115dcf;
 padding:30px 20px;
 font-size:14px;
-opacity:0.8;
+opacity:0.7;
+color:#000;
 }
 
 .about-small{
 margin-bottom:15px;
-font-size:13px;
-opacity:0.7;
+font-size:15px;
+opacity:0.99;
+color:#000;
 }
 
 .progress-line{
@@ -138,41 +216,85 @@ font-size:14px;
 margin-top:8px;
 }
 
-/* AdSense containers - no inline styles for linter */
-.ad-container{ max-width:1200px; margin:20px auto; min-height:50px; }
-.ad-container .adsbygoogle{ display:block; }
+/* AdSense containers - above footer only, side by side, height 200px */
+.ads-above-footer{ max-width:1200px; margin:20px auto 0; height:150px; display:flex; flex-direction:row; justify-content:center; align-items:stretch; gap:16px; }
+.ads-above-footer .ad-container{ flex:1; min-width:0; min-height:100px; background:rgba(0,0,0,0.35); border-radius:8px; padding:10px; }
+.ads-above-footer .adsbygoogle{ display:block; }
+
+/* Mobile: full width up to 425px - fix half-screen layout */
+@media (max-width: 425px) {
+  header {
+    padding: 40px 16px;
+  }
+  header h1 {
+    font-size: 32px;
+  }
+  header p {
+    font-size: 14px;
+  }
+  .games-section {
+    padding: 40px 16px;
+    gap: 20px;
+    width: 100%;
+    max-width: 100%;
+  }
+  .game-card {
+    width: 100%;
+    max-width: 100%;
+    padding: 16px;
+  }
+  .game-card h2 {
+    font-size: 18px;
+  }
+  .ads-above-footer {
+    flex-direction: column;
+    padding: 0 16px;
+    max-width: 100%;
+  }
+  .ads-above-footer .ad-container {
+    min-width: 100%;
+  }
+  footer {
+    padding: 24px 16px;
+    font-size: 13px;
+  }
+}
 </style>
 </head>
 
 <body>
 
 <header>
+<div class="header-birds" aria-hidden="true">
+  <span class="bird-img"><img src="https://firebasestorage.googleapis.com/v0/b/block-puzzle-free-butterfly.firebasestorage.app/o/block%20puzzle%20free%20butterfly%20website%20asset%2Fflying_bird.gif?alt=media&token=1b8e0578-6fe2-444c-b0b8-361eeebcf0ce" alt=""></span>
+  <span class="bird-img"><img src="https://firebasestorage.googleapis.com/v0/b/block-puzzle-free-butterfly.firebasestorage.app/o/block%20puzzle%20free%20butterfly%20website%20asset%2Fbird.gif?alt=media&token=4e41b30d-cf0e-447f-a0fe-edc922c0ce7e" alt=""></span>
+  <span class="bird-img bird-r2l"><img src="https://firebasestorage.googleapis.com/v0/b/block-puzzle-free-butterfly.firebasestorage.app/o/block%20puzzle%20free%20butterfly%20website%20asset%2Fbird1.gif?alt=media&token=078f9ae1-1107-4226-b160-d5489a5f8a84" alt=""></span>
+  <span class="bird-img"><img src="https://firebasestorage.googleapis.com/v0/b/block-puzzle-free-butterfly.firebasestorage.app/o/block%20puzzle%20free%20butterfly%20website%20asset%2Fbird2.gif?alt=media&token=a79437f0-ccbb-422c-b8db-59d95ce7da2f" alt=""></span>
+  <span class="bird-img"><img src="https://firebasestorage.googleapis.com/v0/b/block-puzzle-free-butterfly.firebasestorage.app/o/block%20puzzle%20free%20butterfly%20website%20asset%2Fbird3.gif?alt=media&token=95389ec0-6993-4458-8b43-ed6e73d522fa" alt=""></span>
+  <span class="bird-img bird-r2l"><img src="https://firebasestorage.googleapis.com/v0/b/block-puzzle-free-butterfly.firebasestorage.app/o/block%20puzzle%20free%20butterfly%20website%20asset%2Fbird4.gif?alt=media&token=3ba93a36-d183-4a76-ad42-d5ad0c414514" alt=""></span>
+  <span class="bird-img"><img src="https://firebasestorage.googleapis.com/v0/b/block-puzzle-free-butterfly.firebasestorage.app/o/block%20puzzle%20free%20butterfly%20website%20asset%2Fflying_bird.gif?alt=media&token=1b8e0578-6fe2-444c-b0b8-361eeebcf0ce" alt=""></span>
+  <span class="bird-img"><img src="https://firebasestorage.googleapis.com/v0/b/block-puzzle-free-butterfly.firebasestorage.app/o/block%20puzzle%20free%20butterfly%20website%20asset%2Fbird.gif?alt=media&token=4e41b30d-cf0e-447f-a0fe-edc922c0ce7e" alt=""></span>
+  <span class="bird-img bird-r2l"><img src="https://firebasestorage.googleapis.com/v0/b/block-puzzle-free-butterfly.firebasestorage.app/o/block%20puzzle%20free%20butterfly%20website%20asset%2Fbird1.gif?alt=media&token=078f9ae1-1107-4226-b160-d5489a5f8a84" alt=""></span>
+  <span class="bird-img"><img src="https://firebasestorage.googleapis.com/v0/b/block-puzzle-free-butterfly.firebasestorage.app/o/block%20puzzle%20free%20butterfly%20website%20asset%2Fbird2.gif?alt=media&token=a79437f0-ccbb-422c-b8db-59d95ce7da2f" alt=""></span>
+  <span class="bird-img"><img src="https://firebasestorage.googleapis.com/v0/b/block-puzzle-free-butterfly.firebasestorage.app/o/block%20puzzle%20free%20butterfly%20website%20asset%2Fbird3.gif?alt=media&token=95389ec0-6993-4458-8b43-ed6e73d522fa" alt=""></span>
+  <span class="bird-img bird-r2l"><img src="https://firebasestorage.googleapis.com/v0/b/block-puzzle-free-butterfly.firebasestorage.app/o/block%20puzzle%20free%20butterfly%20website%20asset%2Fbird4.gif?alt=media&token=3ba93a36-d183-4a76-ad42-d5ad0c414514" alt=""></span>
+</div>
 <h1>Flying Bird</h1>
 <p>Simple & Smart Mobile Applications</p>
 </header>
-
-<!-- AdSense: Top placement (below header) - Replace data-ad-slot with your ad unit slot ID -->
-<div class="ad-container ad-top">
-  <ins class="adsbygoogle"
-       data-ad-client="ca-pub-4018304413571969"
-       data-ad-slot="9933408609"
-       data-ad-format="auto"
-       data-full-width-responsive="true"></ins>
-  <script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script>
-</div>
 
 <section class="games-section">
 
 <!-- GAME CARD -->
 <div class="game-card">
-<img src="game-preview.png" alt="Block Puzzle Game">
+<img src="https://firebasestorage.googleapis.com/v0/b/block-puzzle-free-butterfly.firebasestorage.app/o/block%20puzzle%20free%20butterfly%20website%20asset%2Fgame-preview.png?alt=media&token=ad69dc7e-5ea7-42cf-bce5-39c1460d34ea" alt="Block Puzzle Game">
 <h2>Block Puzzle Free Butterfly</h2>
 <p>Relaxing & addictive brain puzzle game.</p>
 <p class="progress-line">Play this game to continue your progress across different devices.</p>
 
 <div class="buttons">
-<a href="block-puzzle-Free-butterfly.html" class="play-btn">🎮 Play Now</a>
-<a href="https://play.google.com/store/apps/details?id=YOUR_APP_ID" 
+<a href="https://firebasestorage.googleapis.com/v0/b/block-puzzle-free-butterfly.firebasestorage.app/o/block%20puzzle%20free%20butterfly%20website%20asset%2Fblock-puzzle-Free-butterfly.html?alt=media&token=0c019609-da96-4ca0-8f01-53611208ce53" class="play-btn">🎮 Play Now</a>
+<a href="https://play.google.com/store/apps/details?id=com.mycompany.blockpuzzlebutterfly&pcampaignid=web_share" 
    class="playstore-btn">📥 Google Play</a>
 </div>
 </div>
@@ -181,14 +303,24 @@ margin-top:8px;
 
 </section>
 
-<!-- AdSense: Bottom placement (above footer) - Replace data-ad-slot with your ad unit slot ID -->
-<div class="ad-container ad-bottom">
-  <ins class="adsbygoogle"
-       data-ad-client="ca-pub-4018304413571969"
-       data-ad-slot="3763586071"
-       data-ad-format="auto"
-       data-full-width-responsive="true"></ins>
-  <script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script>
+<!-- AdSense: Both units above footer, height 200px -->
+<div class="ads-above-footer">
+  <div class="ad-container">
+    <ins class="adsbygoogle"
+         data-ad-client="ca-pub-4018304413571969"
+         data-ad-slot="9933408609"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+    <script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script>
+  </div>
+  <div class="ad-container">
+    <ins class="adsbygoogle"
+         data-ad-client="ca-pub-4018304413571969"
+         data-ad-slot="3763586071"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+    <script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script>
+  </div>
 </div>
 
 <footer>
@@ -202,8 +334,8 @@ Email: flyingbirdplaystore@gmail.com
 </div>
 
 <p>
-<a href="privacy-policy.html" style="color:#00c6ff;text-decoration:none;">Privacy Policy</a> |
-<a href="terms.html" style="color:#00c6ff;text-decoration:none;">Terms & Conditions</a>
+<a href="privacy-policy.html" style="color:#e8f805;text-decoration:none;">Privacy Policy</a> |
+<a href="terms.html" style="color:#e8f805;text-decoration:none;">Terms & Conditions</a>
 </p>
 
 <br>
